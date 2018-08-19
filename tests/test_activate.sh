@@ -10,7 +10,7 @@ rm -rf ${TESTENV}
 
 echo "$0: Creating virtualenv ${TESTENV}..." 1>&2
 
-${VIRTUALENV} ${TESTENV} | tee ${ROOT}/tests/test_activate_output.actual
+${VIRTUALENV} ${TESTENV} | grep -v '^Using real prefix' | tee ${ROOT}/tests/test_activate_output.actual
 if ! diff ${ROOT}/tests/test_activate_output.expected ${ROOT}/tests/test_activate_output.actual; then
     echo "$0: Failed to get expected output from ${VIRTUALENV}!" 1>&2
     exit 1
